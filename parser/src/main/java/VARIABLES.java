@@ -5,4 +5,6 @@ public class VARIABLES {
     public static int VIDRO = 3;
     public static int EMBALAGENS = 4;
     public static int ORGANICOS = 5;
+
+    public static int NUMEROLIGACOES = 15;
 }

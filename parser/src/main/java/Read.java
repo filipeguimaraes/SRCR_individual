@@ -6,12 +6,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class Read {
 
+    public static List<Contentor> read() throws IOException {
+        List<Contentor> contentores = new ArrayList<>();
 
-    public static void read() throws IOException {
         File myFile = new File("src/main/resources/dataset.xlsx");
         FileInputStream fis = new FileInputStream(myFile);
 
@@ -34,38 +37,57 @@ public class Read {
             while (cellIterator.hasNext()) {
                 //latitude: float
                 Cell cell = cellIterator.next();
-                System.out.println(cell.getNumericCellValue());
+                Double latitude = cell.getNumericCellValue();
                 //longitude: float
                 cell = cellIterator.next();
-                System.out.println(cell.getNumericCellValue());
+                Double longitude = cell.getNumericCellValue();
                 //object id: int
                 cell = cellIterator.next();
-                System.out.println(cell.getNumericCellValue());
+                int idContentor = ((Double)cell.getNumericCellValue()).intValue();
                 //ponto recolha freguesia: string
                 cell = cellIterator.next();
-                System.out.println(cell.getStringCellValue());
+                String freguesia = cell.getStringCellValue();
                 //ponto recolha local: string
                 cell = cellIterator.next();
-                System.out.println(cell.getStringCellValue());
+                int idRecolha = Integer.parseInt(cell.getStringCellValue().split(":")[0]);
+                //System.out.println(idRecolha);
                 //contentor residuos: string
                 cell = cellIterator.next();
-                System.out.println(cell.getStringCellValue());
+                String tipo = cell.getStringCellValue();
                 //contentor tipo: string
                 cell = cellIterator.next();
-                System.out.println(cell.getStringCellValue());
+                cell.getStringCellValue();
                 //contentor cap: int
                 cell = cellIterator.next();
-                System.out.println(cell.getNumericCellValue());
+                cell.getNumericCellValue();
                 //contentor qt: int
                 cell = cellIterator.next();
-                System.out.println(cell.getNumericCellValue());
+                cell.getNumericCellValue();
                 //contentor total litros: int
                 cell = cellIterator.next();
-                System.out.println(cell.getNumericCellValue());
+                int capacidade = ((Double) cell.getNumericCellValue()).intValue();
+                contentores.add(new Contentor(tipo,latitude,longitude,freguesia,capacidade,idContentor));
             }
 
         }
-        System.out.println("");
+        return contentores;
     }
+/**
+    public List<Contentor> getContentoresUnicos() throws IOException {
+        read();
+        List<Contentor> contentoresfinal = new ArrayList<>();
+        Contentor c = null;
+        for (Contentor contentor : contentores) {
+            if(c == null || !c.equals(contentor)){
+                contentoresfinal.add(contentor);
+                c = contentor;
+            } else {
+                c.somaCapacidade(contentor.getCapacidade());
+            }
+        }
+
+        return contentoresfinal;
+    }
+ */
 }
 
