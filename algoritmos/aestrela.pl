@@ -15,7 +15,7 @@ aestrela(Caminhos, SolucaoCaminho, Capacidade) :-
 
 aestrela(Caminhos, Caminho, Capacidade) :-
     obtem_melhor(Caminhos, Caminho),
-    Caminho = [Nodo|_]/_/Cap,Cap<Capacidade.%goal(Nodo,R).
+    Caminho = [Nodo|_]/_/Cap,Cap<Capacidade.
 
 
 expande_aestrela(Caminho, ExpCaminhos) :-
@@ -30,7 +30,7 @@ move_aestrela([Nodo|Caminho]/Custo/_, [ProxNodo,Nodo|Caminho]/NovoCusto/Est) :-
 obtem_melhor([Caminho], Caminho) :- !.
 
 obtem_melhor([Caminho1/Custo1/Est1,_/Custo2/Est2|Caminhos], MelhorCaminho) :-
-	Est1 =< Est2, !, % custo 1 é a soma dos caminhos até aí
+	Est1 =< Est2, !, 
 	obtem_melhor([Caminho1/Custo1/Est1|Caminhos], MelhorCaminho).
 	
 obtem_melhor([_|Caminhos], MelhorCaminho) :- 

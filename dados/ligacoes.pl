@@ -2,10 +2,6 @@
 
 ligacao(0, 355, 0).
 
-%ligacao(X,Y,D):-
-%    ligacao(Y,X,D).
-% ligacao(idContentor1,idContentor2,distancia). 
-
 ligacao(355, 356, 0.0).
 ligacao(356, 357, 0.0).
 ligacao(357, 358, 0.0).
